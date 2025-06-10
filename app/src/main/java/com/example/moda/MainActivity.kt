@@ -23,6 +23,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -222,13 +223,20 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     drawerState = drawerState,
     drawerContent = {
       ModalDrawerSheet {
-        Column(modifier, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Column(
+          modifier
+            .padding(horizontal = 16.dp)
+            .verticalScroll(rememberScrollState()),
+          verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
           Row {
             IconButton({ scope.launch { drawerState.close() } }) {
               Icon(Icons.Default.ArrowBack, null)
             }
           }
-          Icon(Icons.Default.PersonPin, null, modifier = Modifier.size(64.dp))
+          Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Icon(Icons.Default.PersonPin, null, modifier = Modifier.size(64.dp))
+          }
           Spacer(modifier)
           HorizontalDivider()
           Spacer(modifier)
