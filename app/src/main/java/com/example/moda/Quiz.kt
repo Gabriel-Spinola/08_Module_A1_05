@@ -55,7 +55,7 @@ fun Quiz(name: String, modifier: Modifier = Modifier) {
   Scaffold(
     topBar = {
       TopAppBar(title = { Text("Quiz My Brain", color = Color.Blue) }, navigationIcon = {
-        IconButton({ MainActivity.nc?.navigate("home") }) {
+        IconButton({ MainActivity.nc?.navigate("h") }) {
           Icon(Icons.Default.ArrowBack, null)
         }
       })

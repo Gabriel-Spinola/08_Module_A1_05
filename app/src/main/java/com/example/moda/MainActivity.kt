@@ -1,10 +1,12 @@
 package com.example.moda
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.ActivityInfo
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.net.ConnectivityManager
@@ -19,6 +21,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -187,21 +190,20 @@ class MainActivity : ComponentActivity() {
           }
 
           NavHost(it, "h") {
-//            requestedOrientation = WindowConf
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER
             composable("h") {
               Greeting("")
             }
             composable("q") {
-              val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-              val sensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
-              Genius("")
+              requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+              Quiz("")
             }
             composable("g") {
-              val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-              val sensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+              requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
               Genius("")
             }
             composable("m") {
+              requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
               Memo("")
             }
           }
